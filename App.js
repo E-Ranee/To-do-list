@@ -2,11 +2,17 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Button, Text, TextInput, View, ScrollView } from 'react-native';
 import { useState } from 'react';
 
-import ListItem from './components/ListItem';
 import Title from './components/Title';
 import Heading from './components/Heading';
 import InputField from './components/InputField';
 import TodoList from './components/TodoList';
+
+// TODO: Make checkboxes behave when items are deleted
+// TODO: Turn the todo list array from an array of strings to an array of tuples (item, checked = default false)
+// TODO: Pass array of tuples to TodoList.js
+// TODO: Pass array of tuples to Todo.js
+// TODO: Use the second part of the tuple as the checked variable
+// TODO: Make checking the box in Todo.js alter the state of the tuple on the todo list array
 
 export default function App() {
 
@@ -35,6 +41,7 @@ export default function App() {
         {/* Heading */}
         <Heading label={"What needs to be done?"}></Heading>
 
+        {/* Where you type in the item and then click add to add it to the list */}
         <InputField todo={todo} setTodo={setTodo} todoList={todoList} setTodoList={setTodoList}></InputField>
 
         <ScrollView style={styles.scrollable}>

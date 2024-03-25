@@ -26,7 +26,7 @@ export default function App() {
 
       <View style={styles.container}>
         {/* Title */}
-        <Text style={styles.title}>To do list</Text> 
+        <Text style={styles.title}>To do list</Text>
         {/* Heading */}
         <Text>What needs to be done?</Text>
         <Text></Text>
@@ -40,14 +40,15 @@ export default function App() {
             defaultValue={todo}
           />
           <Button
-          style={styles.button}
-          title="Add"
-          onPress={handleSubmit}
-      />
+            style={styles.button}
+            title="Add"
+            color="#ece0ff"
+            onPress={handleSubmit}
+          />
         </View>
 
-        {/* List of current tasjs*/}
-        <Text>{todoList}</Text>
+        {/* List of current tasks*/}
+        {todoList.map((item, index) => <Text key={index}>{item}</Text>)}
 
       </View>
 
@@ -79,7 +80,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     padding: 10,
-    backgroundColor: "#ece0ff",
     marginHorizontal: 5,
     borderRadius: 10,
   },

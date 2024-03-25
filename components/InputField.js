@@ -1,20 +1,28 @@
 import React, { useState } from 'react';
 import { Text, TextInput, View, Button, StyleSheet } from 'react-native';
 
-export default function InputField({ label }) {
+export default function InputField({ todo, setTodo, todoList, setTodoList }) {
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        setTodoList([...todoList, todo])
+        setTodo("")
+    }
+
     return (
         <View style={styles.inputContainer}>
             <TextInput
                 style={styles.input}
                 placeholder="Add new item here!"
-            // onChangeText={text => setTodo(text)}
+                value={todo}
+                onChangeText={text => setTodo(text)}
             // defaultValue={todo}
             />
             <Button
                 style={styles.button}
                 title="Add"
                 color="#ece0ff"
-            // onPress={handleSubmit}
+                onPress={handleSubmit}
             />
         </View>
     );
@@ -26,7 +34,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: 5,
+        marginVertical: 5,
     },
     input: {
         borderRadius: 10,

@@ -16,7 +16,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         padding: 20,
         backgroundColor: "purple",
-        marginVertical: 15,
+        marginVertical: 10,
+        marginTop: 40
     },
     text: {
         fontSize: 45,

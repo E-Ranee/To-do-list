@@ -1,11 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Button, Text, TextInput, View } from 'react-native';
-
+import { StyleSheet, Button, Text, TextInput, View, ScrollView } from 'react-native';
 import { useState } from 'react';
+
 import ListItem from './components/ListItem';
 import Title from './components/Title';
 import Heading from './components/Heading';
 import InputField from './components/InputField';
+import TodoList from './components/TodoList';
 
 export default function App() {
 
@@ -33,35 +34,18 @@ export default function App() {
         <Title label={"To Do List"}></Title>
         {/* Heading */}
         <Heading label={"What needs to be done?"}></Heading>
-        <Text></Text>
 
-        {/* Horizontal array of input field and add button */}
-        <InputField label="misc"></InputField>
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.input}
-            placeholder="Add new item here!"
-            onChangeText={text => setTodo(text)}
-            defaultValue={todo}
-          />
-          <Button
-            style={styles.button}
-            title="Add"
-            color="#ece0ff"
-            onPress={handleSubmit}
-          />
-        </View>
+        <InputField todo={todo} setTodo={setTodo} todoList={todoList} setTodoList={setTodoList}></InputField>
 
-        {/* List of current tasks*/}
-        {/* {todoList.map((item, index) => <Text key={index}>{item}</Text>)} */}
-        {todoList.map((item, index) => (
-          <ListItem key={index} name={item}></ListItem>
-        ))}
+        <ScrollView style={styles.scrollable}>
+          {/* List of current tasks*/}
+          <TodoList todoList={todoList}></TodoList>
+        </ScrollView>
 
       </View>
 
       <StatusBar style="auto" />
-    </View>
+    </View >
   );
 }
 
@@ -71,6 +55,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    width: "100%"
   },
   inputContainer: {
     flexDirection: "row",
@@ -91,5 +76,8 @@ const styles = StyleSheet.create({
     padding: 10,
     marginHorizontal: 5,
     borderRadius: 10,
+  },
+  scrollable: {
+    width: "100%",
   },
 });

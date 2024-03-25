@@ -8,9 +8,7 @@ export default function Todo({ todoItem, todoList, setTodoList, index }) {
     const toggleCheckbox = () => setChecked(!checked);
 
     const deleteTodo = () => {
-
-
-        console.log(todoItem)
+        // NOTE: THIS DOESN'T AFFECT CHECKBOXES. DELETING AN ITEM MOVES ALL THE ITEMS UP BY ONE BUT THE TICKED BOXES STAY IN THE SAME PLACE
         setTodoList(todoList.filter((item, itemIndex) => itemIndex !== index))
     };
 
@@ -22,10 +20,11 @@ export default function Todo({ todoItem, todoList, setTodoList, index }) {
                 iconType="material-community"
                 checkedIcon="checkbox-marked"
                 uncheckedIcon="checkbox-blank-outline"
+                checkedColor="#ccb0d6"
             />
-            <Text style={styles.text}>{todoItem}</Text>
+            <Text style={checked ? styles.crossedOut : styles.text}>{todoItem}</Text>
             <Pressable style={styles.button} onPress={deleteTodo}>
-                <Text>(x)</Text>
+                <Text style={checked ? { color: "#ccb0d6" } : styles.text}>(x)</Text>
             </Pressable>
         </View>
     );
@@ -42,6 +41,11 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 15,
+    },
+    crossedOut: {
+        fontSize: 15,
+        color: "#ccb0d6",
+        textDecorationLine: "line-through"
     },
     button: {
         marginLeft: 40

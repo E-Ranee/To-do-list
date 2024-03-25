@@ -39,7 +39,7 @@ export default function App() {
 
         <ScrollView style={styles.scrollable}>
           {/* List of current tasks*/}
-          <TodoList todoList={todoList}></TodoList>
+          <TodoList todoList={todoList} setTodoList={setTodoList}></TodoList>
         </ScrollView>
 
       </View>

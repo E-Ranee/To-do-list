@@ -1,15 +1,21 @@
-import { StyleSheet, View, Text, Button } from 'react-native';
+import { StyleSheet, View, Text, Pressable } from 'react-native';
 
 import { CheckBox } from '@rneui/themed';
 import { useState } from 'react';
 
-export default function Todo({ todoItem }) {
+export default function Todo({ todoItem, todoList, setTodoList, index }) {
     const [checked, setChecked] = useState(false);
     const toggleCheckbox = () => setChecked(!checked);
 
+    const deleteTodo = () => {
+
+
+        console.log(todoItem)
+        setTodoList(todoList.filter((item, itemIndex) => itemIndex !== index))
+    };
+
     return (
         <View style={styles.todoListContainer}>
-            <Text style={styles.text}>{todoItem}</Text>
             <CheckBox
                 checked={checked}
                 onPress={toggleCheckbox}
@@ -17,6 +23,10 @@ export default function Todo({ todoItem }) {
                 checkedIcon="checkbox-marked"
                 uncheckedIcon="checkbox-blank-outline"
             />
+            <Text style={styles.text}>{todoItem}</Text>
+            <Pressable style={styles.button} onPress={deleteTodo}>
+                <Text>(x)</Text>
+            </Pressable>
         </View>
     );
 }
@@ -33,4 +43,7 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 15,
     },
+    button: {
+        marginLeft: 40
+    }
 });

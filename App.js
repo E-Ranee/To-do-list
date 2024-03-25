@@ -8,9 +8,6 @@ import InputField from './components/InputField';
 import TodoList from './components/TodoList';
 
 export default function App() {
-
-  // The current task about to be added to the to do list
-  const [todo, setTodo] = useState('');
   // the list of all items on the to do list
   // expecting format [{title: "living room", done: false}]
   const [todoList, setTodoList] = useState([]);
@@ -26,7 +23,7 @@ export default function App() {
         <Heading label={"What needs to be done?"}></Heading>
 
         {/* Where you type in the item and then click add to add it to the list */}
-        <InputField todo={todo} setTodo={setTodo} todoList={todoList} setTodoList={setTodoList}></InputField>
+        <InputField todoList={todoList} setTodoList={setTodoList}></InputField>
 
         <ScrollView style={styles.scrollable}>
           {/* List of current tasks*/}

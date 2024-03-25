@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { Text, TextInput, View, Button, StyleSheet } from 'react-native';
 
-export default function InputField({ todo, setTodo, todoList, setTodoList }) {
+export default function InputField({ todoList, setTodoList }) {
+
+    // The current task about to be added to the to do list
+    const [todo, setTodo] = useState('');
 
     // When you ADD A NEW ITEM, we want to add a tuple to the array in the form [item, checkedState] where the default is false
 

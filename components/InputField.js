@@ -3,9 +3,11 @@ import { Text, TextInput, View, Button, StyleSheet } from 'react-native';
 
 export default function InputField({ todo, setTodo, todoList, setTodoList }) {
 
+    // When you ADD A NEW ITEM, we want to add a tuple to the array in the form [item, checkedState] where the default is false
+
     const handleSubmit = (event) => {
         event.preventDefault();
-        setTodoList([...todoList, todo])
+        setTodoList([...todoList, { title: todo, done: false }])
         setTodo("")
     }
 

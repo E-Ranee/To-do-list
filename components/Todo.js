@@ -4,8 +4,13 @@ import { CheckBox } from '@rneui/themed';
 import { useState } from 'react';
 
 export default function Todo({ todoItem, todoList, setTodoList, index }) {
-    const [checked, setChecked] = useState(false);
-    const toggleCheckbox = () => setChecked(!checked);
+    const toggleCheckbox = () => {
+        setTodoList(oldList => {
+            const newList = [...oldList]
+            newList[index].done = !newList[index].done
+            return newList
+        })
+    };
 
     const deleteTodo = () => {
         // NOTE: THIS DOESN'T AFFECT CHECKBOXES. DELETING AN ITEM MOVES ALL THE ITEMS UP BY ONE BUT THE TICKED BOXES STAY IN THE SAME PLACE
@@ -15,16 +20,16 @@ export default function Todo({ todoItem, todoList, setTodoList, index }) {
     return (
         <View style={styles.todoListContainer}>
             <CheckBox
-                checked={checked}
+                checked={todoItem.done}
                 onPress={toggleCheckbox}
                 iconType="material-community"
                 checkedIcon="checkbox-marked"
                 uncheckedIcon="checkbox-blank-outline"
                 checkedColor="#ccb0d6"
             />
-            <Text style={checked ? styles.crossedOut : styles.text}>{todoItem}</Text>
+            <Text style={todoItem.done ? styles.crossedOut : styles.text}>{todoItem.title}</Text>
             <Pressable style={styles.button} onPress={deleteTodo}>
-                <Text style={checked ? { color: "#ccb0d6" } : styles.text}>(x)</Text>
+                <Text style={todoItem.done ? { color: "#ccb0d6" } : styles.text}>(x)</Text>
             </Pressable>
         </View>
     );

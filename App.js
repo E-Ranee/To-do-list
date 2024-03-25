@@ -2,6 +2,10 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Button, Text, TextInput, View } from 'react-native';
 
 import { useState } from 'react';
+import ListItem from './components/ListItem';
+import Title from './components/Title';
+import Heading from './components/Heading';
+import InputField from './components/InputField';
 
 export default function App() {
 
@@ -26,12 +30,13 @@ export default function App() {
 
       <View style={styles.container}>
         {/* Title */}
-        <Text style={styles.title}>To do list</Text>
+        <Title label={"To Do List"}></Title>
         {/* Heading */}
-        <Text>What needs to be done?</Text>
+        <Heading label={"What needs to be done?"}></Heading>
         <Text></Text>
 
         {/* Horizontal array of input field and add button */}
+        <InputField label="misc"></InputField>
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.input}
@@ -48,7 +53,10 @@ export default function App() {
         </View>
 
         {/* List of current tasks*/}
-        {todoList.map((item, index) => <Text key={index}>{item}</Text>)}
+        {/* {todoList.map((item, index) => <Text key={index}>{item}</Text>)} */}
+        {todoList.map((item, index) => (
+          <ListItem key={index} name={item}></ListItem>
+        ))}
 
       </View>
 
@@ -72,6 +80,7 @@ const styles = StyleSheet.create({
   input: {
     borderRadius: 10,
     padding: 10,
+    marginHorizontal: 5,
     backgroundColor: '#ece0ff',
     fontStyle: "italic",
   },
@@ -82,8 +91,5 @@ const styles = StyleSheet.create({
     padding: 10,
     marginHorizontal: 5,
     borderRadius: 10,
-  },
-  title: {
-    fontSize: 30,
   },
 });
